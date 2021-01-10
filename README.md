@@ -5,13 +5,13 @@
 __This project consists of 3 parts:__<br />
 __Part A:__ Implements a data structure type of a directed weighted graph in Python.<br />
 __Part B:__ Implements algorithms for use on a directed weighted graph in Python.<br />
-__Part C:__ Makes a comparison for the implementation of the graph in Python versus 2 other implementations:<br />
-* The first is of the ex2 project which implemented in Java.
+__Part C:__ Makes a comparison for the implementation of selected algorithms of the graph in Python versus 2 other implementations:<br />
+* The first is of ex2 project which implemented in Java.
 * The second is of the Python library for graphs - [NetworkX](https://en.wikipedia.org/wiki/NetworkX).
 ---
-## DWGraph 
+## src 
 This package contains:<br />
-3 files which each file contains a class.<br />
+3 python files which each file contains a class.<br />
 2 abstract classes which represents interfaces.
 
 * *NodeData class* implemented in the node_data file.<br />
