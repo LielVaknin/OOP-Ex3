@@ -36,6 +36,7 @@ This ptoject includes 3 unittest tests :
  -  TsetComparison - 
  
 ### An example of a directed weighted graph:
+![An example of graph](https://github.com/LielVaknin/OOP-Ex3/blob/master/resources/Graph%20example.png)
 
 
 *For more information go to the project's [wiki pages](https://github.com/LielVaknin/Ex3/wiki)*
