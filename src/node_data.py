@@ -38,5 +38,10 @@ class NodeData:
         return new_node
 
     def set_tag(self, tag: int):
+        """
+        Sets temporal data which can be used by algorithms and returns 0 after setting.
+        :param tag: represents a given tag for setting.
+        :return: 0 after setting.
+        """
         self.__tag = tag
         return 0

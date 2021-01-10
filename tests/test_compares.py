@@ -4,11 +4,9 @@ import time
 import timeit
 import unittest
 import networkx as nx
-
 import matplotlib.pyplot as plt
-
-from DiGraph import DiGraph
-from GraphAlgo import GraphAlgo
+from src.DiGraph import DiGraph
+from src.GraphAlgo import GraphAlgo
 
 
 class MyTestCase(unittest.TestCase):

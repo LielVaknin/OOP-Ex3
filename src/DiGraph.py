@@ -1,5 +1,4 @@
 import copy
-
 from node_data import NodeData
 
 
@@ -145,6 +144,11 @@ class DiGraph:
         return True
 
     def set_edges(self, edges_dict, end_edges_dict):
+        """
+        Sets edges and end_edges with given dictionaries.
+        :param edges_dict: represents a given dictionary for setting edges dictionary.
+        :param end_edges_dict: represents a given dictionary for setting end_edges dictionary.
+        """
         self.edges = edges_dict
         self.end_edges = end_edges_dict
 
