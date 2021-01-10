@@ -23,7 +23,7 @@ set & get methods, _ _ *init* _ _ method, _ _ *str* _ _ method and _ _ *copy* _ 
 It represents a directed weighted graph.<br /> 
 This class implements the methods:<br /> 
 _ _ *init* _ _ method, methods for returning the number of nodes / edges in the graph,<br /> 
-methods for returning a dictionary of all nodes in the graph / all nodes connected to (into) a given node / all nodes connected from a given node, a method for returning the mc (mode count - counts changes in the graph), methods for adding / removing nodes and edges to / from the graph, _ _ *str* _ _ method and _ _ *copy* _ _ method.
+methods for returning a dictionary of all nodes in the graph / all nodes connected to (into) a given node / all nodes connected from a given node, a method for returning the mc (mode count - counts changes in the graph), methods for adding / removing nodes and edges to / from the graph, _ _ *str* _ _ method and _ _ *copy* _ _ method and a set method for setting the edges dictionaries in the graph (out/in edges).
 
 * *GraphAlgo class* implemented in GraphAlgo file. It inherits from the given GraphAlgoInterface abstract class and represents an Undirected (positive) Weighted Graph Theory algorithms.<br />
 The class includes a set of operations applicable on a graph type of DiGraph:<br />
@@ -33,7 +33,7 @@ _ _ *init* _ _ method which initializes a graph with a given graph, a get_graph 
 This ptoject includes 3 unittest tests :
  -  TestDiGraph - for testing DiGraph class's methods.
  -  TestGraphAlgo - for testing GraphAlgo class's algorithms.
- -  TsetComparison - 
+ -  test_compares - 
  
 ### An example of a directed weighted graph:
 ![An example of graph](https://github.com/LielVaknin/OOP-Ex3/blob/master/resources/Graph%20example.png)
