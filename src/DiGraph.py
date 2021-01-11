@@ -38,7 +38,7 @@ class DiGraph:
         """
         Returns a dictionary of all the edges connected to (into) node_id,
         each edge is represented using a pair (key: other_node_id, value: weight of edge).
-         """
+        """
         ans = {}
         if id1 not in self.__nodes:
             return ans
