@@ -33,8 +33,7 @@ _ _ *init* _ _ method which initializes a graph with a given graph, a get_graph 
 This ptoject includes 3 unittest tests :
  -  TestDiGraph - for testing DiGraph class's methods.
  -  TestGraphAlgo - for testing GraphAlgo class's algorithms.
- -  test_compares - 
- 
+
 ### An example of a directed weighted graph:
 ![An example of graph](https://github.com/LielVaknin/OOP-Ex3/blob/master/resources/Graph%20example.png)
 
