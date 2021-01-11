@@ -13,7 +13,14 @@ class MyTestCase(unittest.TestCase):
 
     def test_plot(self):
         G_A = GraphAlgo()
-        G_A.load_from_json("../data/G_10_80_2.json")
+        G_A.load_from_json("../data/G_10_80_0.json")
+        # i = 650
+        # while i > 0:
+        #     x = random.randint(1, 800)
+        #     y = random.randint(1, 800)
+        #     booli = G_A.get_graph().remove_edge(x, y)
+        #     if booli is True:
+        #         i -= 1
         G_A.plot_graph()
 
     def test_my_draw(self):

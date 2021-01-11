@@ -30,6 +30,9 @@ class NodeData:
         """
         return self.__pos
 
+    def set_pos(self, pos):
+        self.__pos = pos
+
     def __str__(self):
         return f'key:{self.__key}'
 

@@ -1,5 +1,6 @@
 import copy
 import math
+import random
 from collections import deque
 from queue import Queue
 from matplotlib.patches import ConnectionPatch
@@ -182,21 +183,32 @@ class GraphAlgo(GraphAlgoInterface):
         return ans
 
     def plot_graph(self) -> None:
-        """
-        Plots the graph.
-        If the nodes have a position, the nodes will be placed there.
-        Otherwise, they will be placed in a random but elegant manner.
-        @return: None.
-        """
-        ax1 = plt.subplots()
         XV = []
         YV = []
-        arrows_s_x = []
-        arrows_s_y = []
-        arrows_d_dx = []
-        arrows_d_dy = []
         graph = self.get_graph()
+        sum = 10 * graph.v_size()
         nodes = graph.get_all_v().items()
+
+        max_x = 0
+        max_y = 0
+        min_x = math.inf
+        min_y = math.inf
+
+        for node in nodes:
+            if node[1].get_pos() is None:
+                self.generate_locations()
+            node_x = float(node[1].get_pos().split(',')[0])
+            node_y = float(node[1].get_pos().split(',')[1])
+            if node_x > max_x:
+                max_x = node_x
+            if node_y > max_y:
+                max_y = node_y
+            if node_x < min_x:
+                min_x = node_x
+            if node_y < min_y:
+                min_y = node_y
+        frame_x = max_x - min_x
+        frame_y = max_y - min_y
         for node in nodes:
             node_x = float(node[1].get_pos().split(',')[0])
             node_y = float(node[1].get_pos().split(',')[1])
@@ -208,7 +220,12 @@ class GraphAlgo(GraphAlgoInterface):
                 dest_y = float(dest.get_pos().split(',')[1])
                 dx = dest_x - node_x
                 dy = dest_y - node_y
-                plt.arrow(node_x, node_y, dx, dy, linewidth=0.2)
+                line_w = 0.0002 * frame_x
+                if line_w > 0.2 * frame_y:
+                    line_w = 0.2 * frame_y
+
+                plt.arrow(node_x, node_y, dx, dy, width=line_w, length_includes_head=True, head_width=30 * line_w,
+                          head_length=75 * line_w, color='k')
 
                 # plt.arrow(arrows_s_x, arrows_s_y, arrows_d_dx, arrows_d_dy)
 
@@ -216,13 +233,14 @@ class GraphAlgo(GraphAlgoInterface):
                 # arrows_s_y.append(node_y)
                 # arrows_d_dx.append(dx)
                 # arrows_d_dy.append(dy)
-
+        print("xv:", XV)
+        print("yv: ", YV)
         # plt.Arrow()
         plt.plot(XV, YV, 'o')
         plt.grid()
         plt.title("Graph")
-        plt.xlabel("x title")
-        plt.ylabel("y title")
+        plt.xlabel("x")
+        plt.ylabel("y")
         plt.show()
         # xyA = (0.2, 0.2)
         # xyB = (0.8, 0.8)
@@ -234,23 +252,17 @@ class GraphAlgo(GraphAlgoInterface):
         # ax1.add_artist(con)
         # ax1.show()
 
-    # def BFS(self, id1: int) -> list:
-    #     graph = self.__graph
-    #     ans = [id1]
-    #     vis = {}
-    #     vis[id1] = 1
-    #     queue = Queue()
-    #     queue.put(id1)
-    #     while not queue.empty():
-    #         curr = queue.get()
-    #         vis[curr] = 1
-    #         for neighbor in graph.all_out_edges_of_node(curr):
-    #             if neighbor not in vis:
-    #                 ans.append(neighbor)
-    #                 queue.put(neighbor)
-    #                 vis[neighbor] = 1
-    #
-    #     return ans
+    def generate_locations(self):
+        sum = self.get_graph().v_size() + 10
+        counter = 1
+        graph = self.get_graph()
+        for node in graph.get_all_v():
+            x = counter / sum
+            y = random.random()
+            z = 0
+            pos = str(x) + ',' + str(y) + ',' + str(z)
+            graph.get_all_v()[node].set_pos(pos)
+            counter += 1
 
     def __dfs(self, id1: int) -> dict:
         graph = self.__graph
