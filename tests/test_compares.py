@@ -13,18 +13,18 @@ class MyTestCase(unittest.TestCase):
 
     def test_plot(self):
         G_A = GraphAlgo()
-        G_A.load_from_json("G_10_80_2.json")
+        G_A.load_from_json("../data/G_10_80_2.json")
         G_A.plot_graph()
 
     def test_my_draw(self):
         G_10_Algo = GraphAlgo()
-        G_10_Algo.load_from_json("data/G_10000_80000_0.json")
+        G_10_Algo.load_from_json("../data/G_10000_80000_0.json")
         print(G_10_Algo.shortest_path(1, 5000))
 
         nx_10000_graph = nx.DiGraph()  # Loads a graph using NetworkX.
         Nodes = []
         Edges = []
-        with open("data/G_10000_80000_0.json", "r") as json_file:
+        with open("../data/G_10000_80000_0.json", "r") as json_file:
             data = json.load(json_file)
             nodes = data["Nodes"]
             for i in nodes:
@@ -48,12 +48,12 @@ class MyTestCase(unittest.TestCase):
         G_20000_Algo = GraphAlgo()
         G_30000_Algo = GraphAlgo()
 
-        G_10_Algo.load_from_json("data/G_10_80_0.json")
-        G_100_Algo.load_from_json("data/G_100_800_0.json")
-        G_1000_Algo.load_from_json("data/G_1000_8000_0.json")
-        G_10000_Algo.load_from_json("data/G_10000_80000_0.json")
-        G_20000_Algo.load_from_json("data/G_20000_160000_0.json")
-        G_30000_Algo.load_from_json("data/G_30000_240000_0.json")
+        G_10_Algo.load_from_json("../data/G_10_80_0.json")
+        G_100_Algo.load_from_json("../data/G_100_800_0.json")
+        G_1000_Algo.load_from_json("../data/G_1000_8000_0.json")
+        G_10000_Algo.load_from_json("../data/G_10000_80000_0.json")
+        G_20000_Algo.load_from_json("../data/G_20000_160000_0.json")
+        G_30000_Algo.load_from_json("../data/G_30000_240000_0.json")
 
         # shortest path:
 
@@ -211,7 +211,7 @@ class MyTestCase(unittest.TestCase):
         nx_10_graph = nx.DiGraph()  # Loads a graph using NetworkX.
         Nodes = []
         Edges = []
-        with open("data/G_10_80_0.json", "r") as json_file:
+        with open("../data/G_10_80_0.json", "r") as json_file:
             data = json.load(json_file)
             nodes = data["Nodes"]
             for i in nodes:
@@ -227,7 +227,7 @@ class MyTestCase(unittest.TestCase):
         nx_100_graph = nx.DiGraph()  # Loads a graph using NetworkX.
         Nodes = []
         Edges = []
-        with open("data/G_100_800_0.json", "r") as json_file:
+        with open("../data/G_100_800_0.json", "r") as json_file:
             data = json.load(json_file)
             nodes = data["Nodes"]
             for i in nodes:
@@ -243,7 +243,7 @@ class MyTestCase(unittest.TestCase):
         nx_1000_graph = nx.DiGraph()  # Loads a graph using NetworkX.
         Nodes = []
         Edges = []
-        with open("data/G_1000_8000_0.json", "r") as json_file:
+        with open("../data/G_1000_8000_0.json", "r") as json_file:
             data = json.load(json_file)
             nodes = data["Nodes"]
             for i in nodes:
@@ -259,7 +259,7 @@ class MyTestCase(unittest.TestCase):
         nx_10000_graph = nx.DiGraph()  # Loads a graph using NetworkX.
         Nodes = []
         Edges = []
-        with open("data/G_10000_80000_0.json", "r") as json_file:
+        with open("../data/G_10000_80000_0.json", "r") as json_file:
             data = json.load(json_file)
             nodes = data["Nodes"]
             for i in nodes:
@@ -275,7 +275,7 @@ class MyTestCase(unittest.TestCase):
         nx_20000_graph = nx.DiGraph()  # Loads a graph using NetworkX.
         Nodes = []
         Edges = []
-        with open("data/G_20000_160000_0.json", "r") as json_file:
+        with open("../data/G_20000_160000_0.json", "r") as json_file:
             data = json.load(json_file)
             nodes = data["Nodes"]
             for i in nodes:
@@ -291,7 +291,7 @@ class MyTestCase(unittest.TestCase):
         nx_30000_graph = nx.DiGraph()  # Loads a graph using NetworkX.
         Nodes = []
         Edges = []
-        with open("data/G_30000_240000_0.json", "r") as json_file:
+        with open("../data/G_30000_240000_0.json", "r") as json_file:
             data = json.load(json_file)
             nodes = data["Nodes"]
             for i in nodes:
@@ -426,5 +426,6 @@ class MyTestCase(unittest.TestCase):
         # for set in nx_30000_ccs:
         #     self.assertTrue(graph_30000_ccs.contains(set))
 
-        if __name__ == '__main__':
-            unittest.main()
+
+if __name__ == '__main__':
+    unittest.main()

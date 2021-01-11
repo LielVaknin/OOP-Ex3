@@ -3,8 +3,8 @@ import math
 from collections import deque
 from queue import Queue
 from matplotlib.patches import ConnectionPatch
-from DiGraph import DiGraph
-from GraphAlgoInterface import GraphAlgoInterface
+from src.DiGraph import DiGraph
+from src.GraphAlgoInterface import GraphAlgoInterface
 import json
 import heapq
 import matplotlib.pyplot as plt
