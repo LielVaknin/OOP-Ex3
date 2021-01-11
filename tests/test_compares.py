@@ -13,7 +13,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_plot(self):
         G_A = GraphAlgo()
-        G_A.load_from_json("../data/G_10_80_0.json")
+        G_A.load_from_json("../data/A4")
         # i = 650
         # while i > 0:
         #     x = random.randint(1, 800)
@@ -65,43 +65,41 @@ class MyTestCase(unittest.TestCase):
         # shortest path:
 
         start = time.time()
-        for i in range(1, 50):
-            graph_10_sp = G_10_Algo.shortest_path(1, 5)
+        graph_10_sp = G_10_Algo.shortest_path(1, 5)
         end = time.time()
         graph_10_sp_time = end - start
         print("G_10_80_0 shortest_path_time : ", graph_10_sp_time)
 
         start = time.time()
-        for i in range(1, 50):
-            graph_100_sp = G_100_Algo.shortest_path(1, 50)
+        graph_100_sp = G_100_Algo.shortest_path(1, 50)
         end = time.time()
         graph_100_sp_time = end - start
         print("G_100_800_0 shortest_path_time : ", graph_100_sp_time)
 
         start = time.time()
-        for i in range(1, 50):
-            graph_1000_sp = G_1000_Algo.shortest_path(1, 500)
+
+        graph_1000_sp = G_1000_Algo.shortest_path(1, 500)
         end = time.time()
         graph_1000_sp_time = end - start
         print("G_1000_8000_0 shortest_path_time : ", graph_1000_sp_time)
 
         start = time.time()
-        for i in range(1, 20):
-            graph_10000_sp = G_10000_Algo.shortest_path(1, 5000)
+
+        graph_10000_sp = G_10000_Algo.shortest_path(1, 5000)
         end = time.time()
         graph_10000_sp_time = end - start
         print("G_10000_80000_0 shortest_path_time : ", graph_10000_sp_time)
 
         start = time.time()
-        for i in range(1, 10):
-            graph_20000_sp = G_20000_Algo.shortest_path(1, 10000)
+
+        graph_20000_sp = G_20000_Algo.shortest_path(1, 10000)
         end = time.time()
         graph_20000_sp_time = end - start
         print("G_20000_160000_0 shortest_path_time : ", graph_20000_sp_time)
 
         start = time.time()
-        for i in range(1, 5):
-            graph_30000_sp = G_30000_Algo.shortest_path(1, 15000)
+
+        graph_30000_sp = G_30000_Algo.shortest_path(1, 15000)
         end = time.time()
         graph_30000_sp_time = end - start
         print("G_30000_240000_0 shortest_path_time : ", graph_30000_sp_time)
@@ -116,46 +114,46 @@ class MyTestCase(unittest.TestCase):
         # connected component
 
         start = time.time()
-        for i in range(1, 6):
-            graph_10_cc = G_10_Algo.connected_component(5)
+
+        graph_10_cc = G_10_Algo.connected_component(5)
         end = time.time()
         graph_10_cc_time = end - start
         print("G_10_80_0 connected_component_time : ", graph_10_cc_time)
 
         start = time.time()
-        for i in range(1, 6):
-            graph_100_cc = G_100_Algo.connected_component(50)
+
+        graph_100_cc = G_100_Algo.connected_component(50)
         end = time.time()
         graph_100_cc_time = end - start
         print("G_100_800_0 connected_component_time : ", graph_100_cc_time)
 
         start = time.time()
-        for i in range(1, 6):
-            graph_1000_cc = G_1000_Algo.connected_component(500)
+
+        graph_1000_cc = G_1000_Algo.connected_component(500)
         end = time.time()
         graph_1000_cc_time = end - start
         print("G_1000_8000_0 connected_component_time : ", graph_1000_cc_time)
 
         start = time.time()
-        for i in range(1, 6):
-            graph_10000_cc = G_10000_Algo.connected_component(5000)
+
+        graph_10000_cc = G_10000_Algo.connected_component(5000)
         end = time.time()
         graph_10000_cc_time = end - start
         print("G_10000_80000_0 connected_component_time : ", graph_10000_cc_time)
 
         start = time.time()
-        for i in range(1, 6):
-            graph_20000_cc = G_20000_Algo.connected_component(10000)
+
+        graph_20000_cc = G_20000_Algo.connected_component(10000)
         end = time.time()
         graph_20000_cc_time = end - start
         print("G_20000_160000_0 connected_component_time : ", graph_20000_cc_time)
 
         start = time.time()
-        for i in range(1, 6):
-            graph_30000_cc = G_30000_Algo.connected_component(15000)
+
+        graph_30000_cc = G_30000_Algo.connected_component(15000)
         end = time.time()
         graph_30000_cc_time = end - start
-        print("G_30000_160000_0 connected_component_time : ", graph_30000_cc_time)
+        print("G_30000_240000_0 connected_component_time : ", graph_30000_cc_time)
 
         # graph_10_cc = G_10_Algo.connected_component(5)
         # graph_100_cc = G_100_Algo.connected_component(50)
@@ -200,7 +198,7 @@ class MyTestCase(unittest.TestCase):
         graph_30000_ccs = G_30000_Algo.connected_components()
         end = time.time()
         graph_30000_ccs_time = end - start
-        print("G_30000_160000_0 connected_components_time : ", graph_30000_ccs_time)
+        print("G_30000_2400000_0 connected_components_time : ", graph_30000_ccs_time)
 
         for lists in graph_10_ccs:
             lists.sort()
@@ -312,43 +310,43 @@ class MyTestCase(unittest.TestCase):
             nx_30000_graph.add_edge(i["src"], i["dest"], weight=i["w"])
 
         start = time.time()
-        for i in range(1, 50):
-            nx_10_sp = nx.dijkstra_path(nx_10_graph, 1, 5)
+
+        nx_10_sp = nx.dijkstra_path(nx_10_graph, 1, 5)
         end = time.time()
         nx_10_sp_time = end - start
         print("G_10_80_0 nx_shortest_path_time : ", nx_10_sp_time)
 
         start = time.time()
-        for i in range(1, 50):
-            nx_100_sp = nx.dijkstra_path(nx_100_graph, 1, 50)
+
+        nx_100_sp = nx.dijkstra_path(nx_100_graph, 1, 50)
         end = time.time()
         nx_100_sp_time = end - start
         print("G_100_800_0 nx_shortest_path_time : ", nx_100_sp_time)
 
         start = time.time()
-        for i in range(1, 50):
-            nx_1000_sp = nx.dijkstra_path(nx_1000_graph, 1, 500)
+
+        nx_1000_sp = nx.dijkstra_path(nx_1000_graph, 1, 500)
         end = time.time()
         nx_1000_sp_time = end - start
         print("G_1000_8000_0 nx_shortest_path_time : ", nx_1000_sp_time)
 
         start = time.time()
-        for i in range(1, 20):
-            nx_10000_sp = nx.dijkstra_path(nx_10000_graph, 1, 5000)
+
+        nx_10000_sp = nx.dijkstra_path(nx_10000_graph, 1, 5000)
         end = time.time()
         nx_10000_sp_time = end - start
         print("G_10000_80000_0 nx_shortest_path_time : ", nx_10000_sp_time)
 
         start = time.time()
-        for i in range(1, 10):
-            nx_20000_sp = nx.dijkstra_path(nx_20000_graph, 1, 10000)
+
+        nx_20000_sp = nx.dijkstra_path(nx_20000_graph, 1, 10000)
         end = time.time()
         nx_20000_sp_time = end - start
         print("G_20000_160000_0 nx_shortest_path_time : ", nx_20000_sp_time)
 
         start = time.time()
-        for i in range(1, 5):
-            nx_30000_sp = nx.dijkstra_path(nx_30000_graph, 1, 15000)
+
+        nx_30000_sp = nx.dijkstra_path(nx_30000_graph, 1, 15000)
         end = time.time()
         nx_30000_sp_time = end - start
         print("G_30000_240000_0 nx_shortest_path_time : ", nx_30000_sp_time)
@@ -394,7 +392,7 @@ class MyTestCase(unittest.TestCase):
         nx_30000_ccs = list(nx.strongly_connected_components(nx_30000_graph))
         end = time.time()
         nx_30000_ccs_time = end - start
-        print("G_30000_160000_0 nx_connected_components_time : ", nx_30000_ccs_time)
+        print("G_30000_240000_0 nx_connected_components_time : ", nx_30000_ccs_time)
 
         self.assertListEqual(graph_10_sp[1], nx_10_sp)
         self.assertListEqual(graph_100_sp[1], nx_100_sp)

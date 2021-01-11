@@ -5,6 +5,26 @@ from src.DiGraph import DiGraph
 
 class TestDiGraph(TestCase):
 
+    def graph_1_creator(self):
+        graph = DiGraph()
+        for i in range(1, 11):
+            graph.add_node(i)
+
+        for i in range(1, 9):
+            for j in range(1, 3):
+                graph.add_edge(i, i + j, i + j)
+        return graph
+
+    def graph_2_creator(self):
+        graph = DiGraph()
+        for i in range(1, 16):
+            graph.add_node(i)
+
+        for i in range(1, 14):
+            for j in range(1, 3):
+                graph.add_edge(i, i + j, i + j)
+        return graph
+
     def test_v_size(self):
         graph1 = DiGraph()
         self.assertEqual(0, graph1.v_size())
@@ -20,6 +40,18 @@ class TestDiGraph(TestCase):
         graph1.remove_node(5)  # Attempt to delete a node that doesn't exist in the graph anymore.
         self.assertEqual(4, graph1.v_size())
         self.assertEqual(6, graph1.get_mc())
+
+        graph_1 = self.graph_1_creator()
+        graph_2 = self.graph_2_creator()
+        self.assertEqual(10, graph_1.v_size())
+        self.assertEqual(15, graph_2.v_size())
+        graph_1.remove_node(1)
+        self.assertEqual(graph_1.v_size(), 9)
+        graph_1.remove_node(1)
+        self.assertEqual(graph_1.v_size(), 9)
+
+        graph_2.add_node(5)
+        self.assertEqual(15, graph_2.v_size())
 
     def test_e_size(self):
         graph2 = DiGraph()
@@ -41,6 +73,20 @@ class TestDiGraph(TestCase):
         graph2.remove_edge(1, 3)  # Attempt to delete an edge that doesn't exist in the graph anymore.
         self.assertEqual(4, graph2.e_size())
         self.assertEqual(11, graph2.get_mc())
+
+        graph_1 = self.graph_1_creator()
+        graph_2 = self.graph_2_creator()
+
+        self.assertEqual(graph_1.e_size(), 16)
+        self.assertEqual(graph_2.e_size(), 26)
+        graph_1.remove_edge(1, 2)
+        self.assertEqual(graph_1.e_size(), 15)
+        graph_1.remove_edge(1, 2)
+        self.assertEqual(graph_1.e_size(), 15)
+        graph_2.add_edge(14, 15, 1)
+        self.assertEqual(graph_2.e_size(), 27)
+        graph_2.add_edge(14, 15, 1)
+        self.assertEqual(graph_2.e_size(), 27)
 
     def test_get_all_v(self):
         graph3 = DiGraph()

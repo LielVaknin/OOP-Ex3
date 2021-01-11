@@ -207,7 +207,7 @@ class GraphAlgo(GraphAlgoInterface):
         max_y = 0
         min_x = math.inf
         min_y = math.inf
-
+        text = []
         for node in nodes:
             if node[1].get_pos() is None:
                 self.__generate_locations()
@@ -223,11 +223,13 @@ class GraphAlgo(GraphAlgoInterface):
                 min_y = node_y
         frame_x = max_x - min_x
         frame_y = max_y - min_y
+        rad = 1 / 100 * frame_y
         for node in nodes:
             node_x = float(node[1].get_pos().split(',')[0])
             node_y = float(node[1].get_pos().split(',')[1])
             XV.append(node_x)
             YV.append(node_y)
+            text.append([node_x + rad, node_y + rad, node[1].get_id()])
             for edge in graph.all_out_edges_of_node(node[0]):
                 dest = graph.get_all_v()[edge]
                 dest_x = float(dest.get_pos().split(',')[0])
@@ -241,16 +243,10 @@ class GraphAlgo(GraphAlgoInterface):
                 plt.arrow(node_x, node_y, dx, dy, width=line_w, length_includes_head=True, head_width=30 * line_w,
                           head_length=75 * line_w, color='k')
 
-        XVT = XV
-        YVT = YV
-        for x in XVT:
-            x = x + 1 / frame_x
-        for y in YVT:
-            y = y + 1 / frame_y
-        print("xv:", XV)
-        print("yv: ", YV)
-        plt.text()
-        plt.plot(XV, YV, 'o')
+        # plt.text()
+        for tex in text:
+            plt.text(tex[0], tex[1], tex[2], color='b')
+        plt.plot(XV, YV, 'o', color='r')
         plt.grid()
         plt.title("Graph")
         plt.xlabel("x")
@@ -284,4 +280,3 @@ class GraphAlgo(GraphAlgoInterface):
                         stack.append(neighbor)
                         ans[neighbor] = 1
         return ans
-
