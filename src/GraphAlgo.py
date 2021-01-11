@@ -12,7 +12,8 @@ import matplotlib.pyplot as plt
 
 
 class GraphAlgo(GraphAlgoInterface):
-    """This class represents a Directed Weighted Graph Theory algorithms."""
+    """This class represents a Directed Weighted Graph Theory algorithms.
+       This object works on directed weighted graph and run some algorithms over it"""
 
     def __init__(self, graph: DiGraph = None):
         if graph is None:
@@ -21,13 +22,15 @@ class GraphAlgo(GraphAlgoInterface):
 
     def get_graph(self) -> DiGraph:
         """
-        :return: directed weighted graph on which the algorithm works on.
+         This method returns the graph which the Graph_Algo works on.
+        :return: directed weighted graph.
         """
         return self.__graph
 
     def load_from_json(self, file_name: str) -> bool:
         """
-        Loads a graph from a json file.
+        Loads a graph from a json file and inits it.
+        This method returns True if the file successfully loaded, False o.w.
         @param file_name: Represents the path to the json file.
         @returns True if the loading was successful, False otherwise.
         """
@@ -54,21 +57,23 @@ class GraphAlgo(GraphAlgoInterface):
 
     def save_to_json(self, file_name: str):
         """
-        Saves the graph in JSON format to a file.
-        @param file_name: Represents the path to the out file.
+        Saves the graph at JSON format into a file(by given path name).
+        @param file_name: Represents the path to the output file.
         @return: True if the save was successful, False otherwise.
         """
         nodes = []
         edges = []
-        for node in self.get_graph().get_all_v():
+        for node in self.get_graph().get_all_v().items():
             nodes_dict = {}
-            nodes_dict["id"] = node
+            nodes_dict["id"] = node[1].get_id()
+            if len(node) > 1:
+                nodes_dict["pos"] = node[1].get_pos()
             nodes.append(nodes_dict)
-            node_edges = self.get_graph().all_out_edges_of_node(node)
-            node_edges_keys = self.get_graph().all_out_edges_of_node(node).keys()
-            for edge in node_edges_keys:
+            node_edges = self.get_graph().all_out_edges_of_node(node[1].get_id())
+            # node_edges_keys = self.get_graph().all_out_edges_of_node(node).keys()
+            for edge in node_edges:
                 edges_dict = {}
-                edges_dict["src"] = node
+                edges_dict["src"] = node[1].get_id()
                 edges_dict["dest"] = edge
                 edges_dict["w"] = node_edges[edge]
                 edges.append(edges_dict)
@@ -87,19 +92,22 @@ class GraphAlgo(GraphAlgoInterface):
     def shortest_path(self, id1: int, id2: int) -> (float, list):
         """
         Returns the shortest path from node id1 to node id2 using Dijkstra's Algorithm.
-        @param id1: Represents the start node id.
-        @param id2: Represents the end node id.
-        @return: The distance of the path, a list of the nodes ids that the path goes through.
+        @param id1: Represents the src node id.
+        @param id2: Represents the dest node id.
+        @return: The distance of the path and list of the nodes ids that the path goes through.
         If there is no path between id1 and id2, or one of them dose not exist the function returns (float('inf'),[]).
         """
         ans = (math.inf, [])
         graph = self.get_graph()
         graph_nodes = graph.get_all_v()
         visited = {}
-        distance = {-1: math.inf}
+        distance = {}
         path = {}
         queue = []
-        if id1 not in graph_nodes or id2 not in graph_nodes or id1 == id2:
+        if id1 not in graph_nodes or id2 not in graph_nodes:
+            return ans
+        if id1 == id2:
+            ans = (0, [id1])
             return ans
         for node in graph.get_all_v():
             distance[node] = math.inf
@@ -137,7 +145,7 @@ class GraphAlgo(GraphAlgoInterface):
 
     def connected_component(self, id1: int) -> list:
         """
-        Finds the Strongly Connected Component(SCC) that node id1 is a part of.
+        Finds the Strongly Connected Component(SCC) that node id1 is part of.
         @param id1: Represents the node id.
         @return: The list of nodes in the SCC.
         If the graph is None or id1 is not in the graph, the function should return an empty list [].
@@ -167,7 +175,7 @@ class GraphAlgo(GraphAlgoInterface):
     def connected_components(self):
         """
         Finds all the Strongly Connected Component(SCC) in the graph.
-        @return: The list all SCC.
+        @return: The list of all SCC.
         If the graph is None the function should return an empty list [].
         """
         ans = []
@@ -183,6 +191,12 @@ class GraphAlgo(GraphAlgoInterface):
         return ans
 
     def plot_graph(self) -> None:
+        """
+        Plots the graph.
+        If the nodes have a position, the nodes will be placed there.
+        Otherwise, they will be placed in a random but elegant manner (by using generate_locations method).
+        @return: None.
+        """
         XV = []
         YV = []
         graph = self.get_graph()
@@ -196,7 +210,7 @@ class GraphAlgo(GraphAlgoInterface):
 
         for node in nodes:
             if node[1].get_pos() is None:
-                self.generate_locations()
+                self.__generate_locations()
             node_x = float(node[1].get_pos().split(',')[0])
             node_y = float(node[1].get_pos().split(',')[1])
             if node_x > max_x:
@@ -227,32 +241,23 @@ class GraphAlgo(GraphAlgoInterface):
                 plt.arrow(node_x, node_y, dx, dy, width=line_w, length_includes_head=True, head_width=30 * line_w,
                           head_length=75 * line_w, color='k')
 
-                # plt.arrow(arrows_s_x, arrows_s_y, arrows_d_dx, arrows_d_dy)
-
-                # arrows_s_x.append(node_x)
-                # arrows_s_y.append(node_y)
-                # arrows_d_dx.append(dx)
-                # arrows_d_dy.append(dy)
+        XVT = XV
+        YVT = YV
+        for x in XVT:
+            x = x + 1 / frame_x
+        for y in YVT:
+            y = y + 1 / frame_y
         print("xv:", XV)
         print("yv: ", YV)
-        # plt.Arrow()
+        plt.text()
         plt.plot(XV, YV, 'o')
         plt.grid()
         plt.title("Graph")
         plt.xlabel("x")
         plt.ylabel("y")
         plt.show()
-        # xyA = (0.2, 0.2)
-        # xyB = (0.8, 0.8)
-        # coordsA = "data"
-        # coordsB = "data"
-        # con = ConnectionPatch(xyA, xyB, coordsA, coordsB,
-        #                       arrowstyle="-|>", shrinkA=5, shrinkB=5,
-        #                       mutation_scale=20, fc="w")
-        # ax1.add_artist(con)
-        # ax1.show()
 
-    def generate_locations(self):
+    def __generate_locations(self):
         sum = self.get_graph().v_size() + 10
         counter = 1
         graph = self.get_graph()
@@ -280,17 +285,3 @@ class GraphAlgo(GraphAlgoInterface):
                         ans[neighbor] = 1
         return ans
 
-# nodes = graph.get_all_v()
-# for node in nodes:
-#     node_o = nodes[node]
-#     node_x = float(node_o[1].get_pos().split(',')[0])
-#     node_y = float(node_o[1].get_pos().split(',')[1])
-#     XV.append(node_x)
-#     YV.append(node_y)
-#     for edge in graph.all_out_edges_of_node(node):
-#         dest = nodes[edge]
-#         dest_x = float(dest[1].get_pos().split(',')[0])
-#         dest_y = float(dest[1].get_pos().split(',')[1])
-#         dx = dest_x - node_x
-#         dy = dest_y - node_y
-#         plt.arrow(node_x, node_y, dx, dy)
