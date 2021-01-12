@@ -145,21 +145,16 @@ class TestGraphAlgo(TestCase):
         self.assertListEqual([], graph_a.connected_component(
             10))  # Attempt to find the SCC that a node which not exists in the graph should be a part of it.
         self.assertListEqual([1, 2, 3, 4], graph_a.connected_component(1))
-        self.assertListEqual([5, 6, 8], graph_a.connected_component(5))
+        self.assertListEqual([5, 8, 6], graph_a.connected_component(5))
         self.assertListEqual([7], graph_a.connected_component(7))
         graph_a.get_graph().add_node(9)
         self.assertListEqual([9], graph_a.connected_component(9))
-        self.assertListEqual([1, 2, 3, 4], graph_a.connected_component(3))
+        self.assertListEqual([3, 1, 2, 4], graph_a.connected_component(3))
 
     def test_connected_components(self):
         graph_d = DiGraph()
         graph_a = GraphAlgo(graph_d)
         graph_aa = GraphAlgo()
-        graph_aa.load_from_json("10^4 nodes with 10^5 edges.json")
-        start = time.time()
-        tmp = graph_aa.connected_components()
-        end = time.time()
-        print("time: ", end - start)
         self.assertListEqual([], graph_a.connected_component(1))
         graph_a.get_graph().add_node(1)
         graph_a.get_graph().add_node(2)
@@ -178,7 +173,15 @@ class TestGraphAlgo(TestCase):
         graph_a.get_graph().add_edge(7, 6, 1)
         graph_a.get_graph().add_edge(6, 5, 1)
         graph_a.get_graph().add_edge(8, 6, 3)
-        # self.assertListEqual([[1, 2, 3, 4], [5, 6, 8], [7]], graph_a.connected_components())
+        counter = 0
+        for component in graph_a.connected_components():
+            if counter == 0:
+                self.assertTrue(1 in component and 2 in component and 3 in component and 4 in component)
+            if counter == 2:
+                self.assertTrue(7 in component)
+            if counter == 1:
+                self.assertTrue(5 in component and 6 in component and 8 in component)
+            counter += 1
         print(graph_a.connected_components())
 
     def test_plot_graph(self):
@@ -195,7 +198,7 @@ class TestGraphAlgo(TestCase):
         graph_d.add_edge(3, 5, 1.2)
         graph_d.add_edge(2, 4, 6)
         graph_a = GraphAlgo(graph_d)
-        self.assertIsNone(graph_a.plot_graph(graph_a))
+        self.assertIsNone(graph_a.plot_graph())
 
 
 if __name__ == '__main__':
