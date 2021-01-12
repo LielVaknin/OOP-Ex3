@@ -38,6 +38,6 @@ This ptoject includes 2 unittest tests :
 ![An example of graph](https://github.com/LielVaknin/OOP-Ex3/blob/master/resources/Graph%20example.png)
 
 
-*For more information go to the project's [wiki pages](https://github.com/LielVaknin/Ex3/wiki)*
+*For more information go to the project's [wiki pages](https://github.com/LielVaknin/OOP-Ex3/wiki)*
 
 
