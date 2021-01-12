@@ -246,6 +246,7 @@ class GraphAlgo(GraphAlgoInterface):
         # plt.text()
         for tex in text:
             plt.text(tex[0], tex[1], tex[2], color='b')
+
         plt.plot(XV, YV, 'o', color='r')
         plt.grid()
         plt.title("Graph")

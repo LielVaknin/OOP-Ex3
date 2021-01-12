@@ -13,7 +13,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_plot(self):
         G_A = GraphAlgo()
-        G_A.load_from_json("../data/A4")
+        G_A.load_from_json("../data/A5")
         # i = 650
         # while i > 0:
         #     x = random.randint(1, 800)

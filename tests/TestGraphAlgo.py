@@ -1,3 +1,4 @@
+import copy
 import time
 import unittest
 from unittest import TestCase
@@ -6,6 +7,23 @@ from src.GraphAlgo import GraphAlgo
 
 
 class TestGraphAlgo(TestCase):
+
+    def grpahs_equal(self, graph1: DiGraph, graph2: DiGraph):
+        if graph1.v_size() != graph2.v_size() or graph1.e_size() != graph2.e_size():
+            return False
+        nodes_1 = graph1.get_all_v()
+        nodes_2 = graph2.get_all_v()
+        for node_1 in nodes_1:
+            if node_1 not in nodes_2:
+                return False
+            else:
+                node_2 = nodes_2[node_1].get_id()
+                node_1_edges = graph1.all_out_edges_of_node(node_1).items()
+                node_2_edges = graph2.all_out_edges_of_node(node_2).items()
+                for edge_1 in node_1_edges:
+                    if edge_1 not in node_2_edges:
+                        return False
+        return True
 
     def test_get_graph(self):
         graph_d = DiGraph()
@@ -24,7 +42,11 @@ class TestGraphAlgo(TestCase):
         graph_d.add_edge(3, 4, 1)
         graph_d.add_edge(4, 1, 3)
         graph_a = GraphAlgo(graph_d)
-        self.assertEqual(graph_d, graph_a.get_graph())
+        graph_b = copy.deepcopy(graph_d)
+        self.assertTrue(self.grpahs_equal(graph_b, graph_a.get_graph()))
+        graph_b.remove_node(0)
+        graph_b.add_node(6)
+        self.assertFalse(self.grpahs_equal(graph_b, graph_a.get_graph()))
 
     def test_save_to_json(self):
         graph_d = DiGraph()
@@ -96,10 +118,8 @@ class TestGraphAlgo(TestCase):
                                                                         1))  # Attempt to find a path between a node which not exists in the graph and one which exists in the graph.
         self.assertTupleEqual((float('inf'), []), graph_a.shortest_path(13,
                                                                         11))  # Attempt to find a path between 2 nodes which not exist in the graph.
-        self.assertTupleEqual((float('inf'), []), graph_a.shortest_path(3,
-                                                                        3))  # Attempt to find a path between a node in the graph to itself.
-        self.assertTupleEqual((float('inf'), []), graph_a.shortest_path(3,
-                                                                        3))  # Attempt to find a path between a node which not exists in the graph to itself.
+
+        self.assertTupleEqual((0, [3]), graph_a.shortest_path(3, 3))
 
     def test_connected_component(self):
         graph_d = DiGraph()
@@ -134,7 +154,7 @@ class TestGraphAlgo(TestCase):
     def test_connected_components(self):
         graph_d = DiGraph()
         graph_a = GraphAlgo(graph_d)
-        graph_aa=GraphAlgo()
+        graph_aa = GraphAlgo()
         graph_aa.load_from_json("10^4 nodes with 10^5 edges.json")
         start = time.time()
         tmp = graph_aa.connected_components()
