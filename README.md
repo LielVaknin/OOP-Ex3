@@ -25,7 +25,7 @@ This class implements the methods:<br />
 _ _ *init* _ _ method, methods for returning the number of nodes / edges in the graph,<br /> 
 methods for returning a dictionary of all nodes in the graph / all edges connected to (into) a given node / all edges connected from a given node, a method for returning the mc (mode count - counts changes in the graph), methods for adding / removing nodes and edges to / from the graph, _ _ *str* _ _ method and _ _ *copy* _ _ method.
 
-* *GraphAlgo class* implemented in GraphAlgo file. It inherits from the given GraphAlgoInterface abstract class and represents an Undirected (positive) Weighted Graph Theory algorithms.<br />
+* *GraphAlgo class* implemented in GraphAlgo file. It inherits from the given GraphAlgoInterface abstract class and represents a Directed (positive) Weighted Graph Theory algorithms.<br />
 The class includes a set of operations applicable on a graph type of DiGraph:<br />
 _ _ *init* _ _ method which initializes a graph with a given graph, a get_graph method, a method which saves self graph to a given file name and a method which loads a graph to self graph (using [JSON](https://en.wikipedia.org/wiki/JSON) format), a method for finding the shortest path in the graph between a given source and destination and finding its length - using [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm), a method for finding the Strongly Connected Component that a specific node is part of, a method for finding all the Strongly Connected Component in the graph and a method for plotting the graph using [Matplotlib library](https://en.wikipedia.org/wiki/Matplotlib).
 
