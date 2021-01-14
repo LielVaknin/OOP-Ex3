@@ -148,3 +148,5 @@ class DiGraph:
     def __copy__(self):
         new_grpah = copy.deepcopy(self)
         return new_grpah
+    def __repr__(self):
+        return f'Graph: |V|={self.v_size()}, |E|={self.e_size()}'
