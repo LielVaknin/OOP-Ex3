@@ -251,11 +251,11 @@ class TestDiGraph(TestCase):
         self.assertTrue(graph9.remove_node(1))
         self.assertEqual(4, graph9.v_size())
         self.assertEqual(2, graph9.e_size())
-        self.assertEqual(14, graph9.get_mc())  # The increase of mc also caused because of edges deletion.
+        self.assertEqual(11, graph9.get_mc())  # The increase of mc also caused because of edges deletion.
         self.assertFalse(graph9.remove_node(1))  # Attempt to remove node which no longer exists in the graph.
         self.assertEqual(4, graph9.v_size())
         self.assertEqual(2, graph9.e_size())
-        self.assertEqual(14, graph9.get_mc())
+        self.assertEqual(11, graph9.get_mc())
 
     def test_remove_edge(self):
         graph10 = DiGraph()

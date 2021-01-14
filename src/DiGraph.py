@@ -110,13 +110,13 @@ class DiGraph:
         out_edges = self.all_out_edges_of_node(node_id)
         for n in out_edges:
             del self.end_edges[n][node_id]
-            self.__mc += 1
+            # self.__mc += 1
             self.__edge_size -= 1
         del self.edges[node_id]
         in_edges = self.all_in_edges_of_node(node_id)
         for n in in_edges:
             del self.edges[n][node_id]
-            self.__mc += 1
+            # self.__mc += 1
             self.__edge_size -= 1
         del self.end_edges[node_id]
         del self.__nodes[node_id]
